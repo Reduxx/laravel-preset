@@ -1,0 +1,27 @@
+{
+    "name": "reduxx/laravel-preset",
+    "description": "VueJS and Tailwind preset for Laravel",
+    "keywords": [
+        "laravel", "laravel preset", "tailwindcss", "vuejs", "purgecss"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Sperling",
+            "email": "simon.sperling@gmx.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Reduxx\\LaravelPreset\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Reduxx\\LaravelPreset\\ReduxxServiceProvider"
+            ]
+        }
+    }
+}
