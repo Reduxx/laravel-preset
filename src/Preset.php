@@ -3,19 +3,33 @@
 namespace Reduxx\LaravelPreset;
 
 use Illuminate\Support\Arr;
+use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Foundation\Console\Presets\Preset as LaravelPreset;
 
 class Preset extends LaravelPreset
 {
-    public static function install()
+    public static function install(Command $command)
     {
+        $command->info('Removing default SASS directory');
         self::removeSassDirectory();
+
+        $command->info('Initializing LESS with TailwindCSS default');
         self::createLessDirectory();
         self::createLessFile();
+
+        $command->info('Updating package.json');
         self::updatePackages();
+
+        $command->info('Updating webpack.mix.js file');
         self::updateMix();
+
+        $command->info('Add new boilerplate for VueJS components with TailwindCSS classes');
         self::updateScripts();
+
+        if (!File::exists(base_path('tailwind.js'))) {
+            $command->warn('You don\'t have a tailwind.js file. Please run "npm install" and then "./node_modules/.bin/tailwind init"');
+        }
     }
 
     public static function removeSassDirectory()

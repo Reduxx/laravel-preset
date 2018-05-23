@@ -2,6 +2,7 @@
 
 namespace Reduxx\LaravelPreset;
 
+use Illuminate\Console\Command;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Console\PresetCommand;
 
@@ -14,8 +15,10 @@ class ReduxxServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        PresetCommand::macro('reduxx', function ($command) {
-            Preset::install();
+        PresetCommand::macro('reduxx', function (Command $command) {
+            Preset::install($command);
+            $command->line('');
+            $command->info('All finished!');
         });
     }
 
